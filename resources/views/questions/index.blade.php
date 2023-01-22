@@ -14,5 +14,8 @@
         @else
             <p class='lead'>Hmm, sad, very sad, no questions?</p>
         @endunless
+        <div class="d-flex">
+            {!! $questions->links() !!}
+        </div>
     </div>
 @endsection
