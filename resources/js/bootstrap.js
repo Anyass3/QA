@@ -8,6 +8,7 @@ window._ = _;
  */
 
 import axios from 'axios';
+import { timeDelta } from './time-delta';
 
 window.axios = axios;
 
@@ -34,3 +35,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+
+
+export { timeDelta } from './time-delta'
+window.timeDelta = timeDelta
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    document.querySelectorAll('[data-time-delta]').forEach((node) => {
+        window.timeDelta(node)
+    });
+})
