@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class QuestionFactory extends Factory
 {
 
-    public static $subjects = array('Maths', 'English', 'Parmacology', 'Biology', 'Government', 'hemotology', 'Philosophy');
+    public static $subjects = array('Maths', 'English', 'Pharmacology', 'Biology', 'Government', 'hemotology', 'Philosophy');
     /**
      * Define the model's default state.
      *
@@ -19,7 +19,7 @@ class QuestionFactory extends Factory
     public function definition()
     {
         return [
-            'question' => fake()->sentence(20),
+            'question' => fake()->sentence(40),
             'tags' =>  join(', ', array_rand(array_flip($this::$subjects), 3)),
             'user_id' => rand(1, 7),
             'anonymous' => boolval(rand(0, 1))
