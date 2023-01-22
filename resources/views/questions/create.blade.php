@@ -15,6 +15,11 @@
                 {{ old('question') }}</textarea>
                 <label for="questionFormControlTextarea1" class="form-label">Write your question here</label>
             </div>
+            @error('question')
+                <p class="invalid-feedback" style="display:block !important;">
+                    {{ $message }}
+                </p>
+            @enderror
         </div>
 
         @php
@@ -34,6 +39,11 @@
                 @endforeach
             </datalist>
 
+            @error('tags')
+                <p class="invalid-feedback" style="display:block !important;">
+                    {{ $message }}
+                </p>
+            @enderror
         </div>
         <div class="form-check form-switch mb-3">
             <input class="form-check-input" name="anonymous" type="checkbox" id="invalidCheck">
@@ -41,6 +51,11 @@
                 Hide me
             </label>
 
+            @error('anonymous')
+                <p class="invalid-feedback" style="display:block !important;">
+                    {{ $message }}
+                </p>
+            @enderror
         </div>
         <input type="submit" class="btn btn-outline-primary" />
     </form>
