@@ -9,7 +9,7 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['question', 'anonymous', 'tags', 'user_id', 'created_at', 'updated_at'];
+    protected $fillable = ['question', 'anonymous', 'tags', 'user_id', 'created_at', 'updated_at', 'attachments'];
 
     public function scopeFilter($query, array $filters)
     {
