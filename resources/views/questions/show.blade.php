@@ -17,9 +17,13 @@
             <p class="text-muted">Published: <span data-time-delta="{{ $question['created_at'] }}" /></p>
             <p class="text-muted">Updated: <span data-time-delta="{{ $question['updated_at'] }}" /></p>
         </div>
-        <div class="col">
+        <div>
             {{ $question['question'] }}
         </div>
+
+        <x-attachments :attachments="$question->attachments" />
+
+        {{-- {{ dd($question->attachments) }} --}}
         <form method="POST" action='/answers/create' class="d-flex flex-column gap-2 mt-3">
             @csrf
             <input type="hidden" name="questionId" value="{{ $question['id'] }}">

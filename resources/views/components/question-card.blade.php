@@ -10,6 +10,7 @@
         <div class="col d-flex flex-column justify-content-around">
             <a href="/questions/{{ $question['id'] }}" class="w-full block py-0 my-0 text-decoration-none">
                 {{ $question['question'] }}
+                <x-attachments-badge :attachments="$question->attachments" />
             </a>
             <x-tags :tags="$question->tags" />
             <small class="text-muted">Published: <span data-time-delta="{{ $question['created_at'] }}" /></small>

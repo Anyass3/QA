@@ -6,13 +6,12 @@
 
 
 @section('content')
-    <form action="/questions" method="post" class="mx-auto mt-5">
+    <form action="/questions" method="post" class="mx-auto mt-5" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <div class="form-floating">
                 <textarea class="form-control" id="questionFormControlTextarea1" name='question' placeholder="Write your question here"
-                    rows="5">
-                {{ old('question') }}</textarea>
+                    rows="5">{{ trim(old('question')) }}</textarea>
                 <label for="questionFormControlTextarea1" class="form-label">Write your question here</label>
             </div>
             @error('question')
@@ -20,6 +19,11 @@
                     {{ $message }}
                 </p>
             @enderror
+        </div>
+        <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">attachments</label>
+            <input class="form-control" type="file" name="attachments[]" id="formFileMultiple"
+                placeholder="choose attachments" multiple>
         </div>
 
         @php
@@ -29,7 +33,7 @@
         <div class="input-group mb-3" multiple>
             <span class="input-group-text">Tags</span>
             <div class="form-floating">
-                <input class="form-control" value="{{ old('tags') }}" list="tagsDatalistOptions" id="tagsLabel"
+                <input class="form-control" value="{{ trim(old('tags')) }}" list="tagsDatalistOptions" id="tagsLabel"
                     placeholder="{{ $tagString }}" name='tags'>
                 <label for="tagsLabel" class="form-label">{{ $tagString }}</label>
             </div>
