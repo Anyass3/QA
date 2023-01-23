@@ -20,6 +20,7 @@ class QuestionFactory extends Factory
     {
         return [
             'question' => fake()->sentence(40),
+            "attachments" => '',
             'tags' =>  join(', ', array_rand(array_flip($this::$subjects), 3)),
             'user_id' => rand(1, 7),
             'anonymous' => boolval(rand(0, 1))
