@@ -17,6 +17,7 @@ class QuestionController extends Controller
     // show a single question
     public function show(Question $question)
     {
+        // dd($question);
         return view('questions.show', ['question' => $question]);
     }
     // show a single question
@@ -33,8 +34,18 @@ class QuestionController extends Controller
             'tags' => 'required',
             'anonymous' => ''
         ]);
+        $formFields['anonymous'] = isset($formFields['anonymous']);
         $formFields['user_id'] = rand(1, 7);
-        // dd($formFields);
+        if ($request->hasFile('attachments')) {
+            $len = $request->file('attachments');
+            $formFields['attachments'] = "";
+            foreach ($request->file('attachments') as $key => $file) {
+                if (($key + 1) < $len) $sep = ';';
+                else $sep = '';
+                $formFields['attachments'] .= $file->store('attachments', 'public') . $sep;
+            }
+        }
+
         Question::create($formFields);
 
         return redirect('/')->with(['message' => 'Question created successfully']);
